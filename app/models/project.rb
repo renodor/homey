@@ -1,8 +1,8 @@
 # frozen_string_literal:true
 
 class Project < ApplicationRecord
-  has_many :comments
-  has_many :project_status_histories
+  has_many :comments, dependent: :destroy
+  has_many :project_status_histories, dependent: :destroy
 
   validates :name, :status, presence: true
 

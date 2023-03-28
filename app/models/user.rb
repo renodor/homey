@@ -6,8 +6,8 @@ class User < ApplicationRecord
   # :recoverable, :rememberable, :validatable
   devise :database_authenticatable, :registerable
 
-  has_many :comments
-  has_many :project_status_histories
+  has_many :comments, dependent: :destroy
+  has_many :project_status_histories, dependent: :destroy # TODO > maybe not
 
   validates :username, :email, presence: true
 end

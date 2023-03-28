@@ -1,0 +1,16 @@
+<div>
+  <h1 class="text-xl"><%= @project.name %></h1>
+
+  <div>
+    <% @comments.each do |comment| %>
+      <p><%= comment.body %></p>
+    <% end %>
+  </div>
+
+  <div>
+    <%= simple_form_for [@project, @comment] do |f| %>
+      <%= f.input :body, label: false, placeholder: "Add a comment..." %>
+      <%= f.button :submit, "Add Comment" %>
+    <% end %>
+  </div>
+</div>
