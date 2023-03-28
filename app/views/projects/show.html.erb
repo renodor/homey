@@ -43,19 +43,13 @@
         <h2 class="font-semibold">Project History</h2>
         <% @project_changes.each do |change| %>
           <% if change.is_a?(Comment) %>
-            <div class="bg-gray-50 p-3">
-              <div class="flex justify-between">
-                <span class="font-medium"><%= change.user.username %></span>
-                <span class="text-sm text-slate-500	"><%= change.created_at.strftime("%B %y - %I:%M%P") %></span>
-              </div>
+            <div class="bg-gray-100 p-3">
+              <%= render 'project_change_header', username: change.user.username, date: change.created_at %>
               <p><%= change.body %></p>
             </div>
           <% elsif change.is_a?(ProjectStatusChange) %>
             <div class="p-3">
-              <div class="flex justify-between">
-                <span class="font-medium"><%= change.user.username %></span>
-                <span class="text-sm text-slate-500	"><%= change.created_at.strftime("%B %y - %I:%M%P") %></span>
-              </div>
+              <%= render 'project_change_header', username: change.user.username, date: change.created_at %>
               <span>Changed project status from <%= project_status_tag(change.from) %> to <%= project_status_tag(change.to) %></span>
             </div>
           <% end %>
