@@ -7,7 +7,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable
 
   has_many :comments, dependent: :destroy
-  has_many :project_status_histories, dependent: :destroy # TODO > maybe not
+  has_many :project_status_changes, dependent: :destroy # TODO > maybe not
 
   validates :username, :email, presence: true
 end

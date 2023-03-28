@@ -2,7 +2,7 @@
 
 class Project < ApplicationRecord
   has_many :comments, dependent: :destroy
-  has_many :project_status_histories, dependent: :destroy
+  has_many :project_status_changes, dependent: :destroy
 
   validates :name, :status, :description, presence: true
 

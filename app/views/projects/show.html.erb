@@ -1,58 +1,73 @@
-<div class="flex justify-center">
-  <div class="m-10 bg-white rounded flex flex-col gap-y-5 shadow p-5 max-w-2xl">
-    <div class="flex justify-center items-center">
-      <h1 class="text-2xl text-center font-semibold grow"><%= @project.name %></h1>
-      <div
-        data-controller="project-status"
-        data-action="click->project-status#toggle"
-        class="relative"
-      >
-        <div class="cursor-pointer opacity-80 hover:opacity-100">
-          <%= project_status_tag(@project.status) %>
-        </div>
+<div class="m-10 flex flex-col items-center">
+  <div class="max-w-2xl">
+    <div class="w-full mb-3">
+      <%= link_to "Back to Projects", projects_path %>
+    </div>
+    <div class="bg-white rounded flex flex-col gap-y-5 shadow p-5">
+      <div class="flex justify-center items-center">
+        <h1 class="text-2xl text-center font-semibold grow"><%= @project.name %></h1>
         <div
-          data-project-status-target="selectStatus"
-          class="absolute bg-white text-right right-0 w-36 p-3 mt-2 rounded shadow hidden"
+          data-controller="project-status"
+          data-action="click->project-status#toggle"
+          class="relative"
         >
-          <div class="flex flex-col items-end gap-y-2">
-            <% Project.statuses.each_key do |status| %>
-              <%= button_to(
-                project_status_tag(status),
-                { action: :update },
-                {
-                  method: :put,
-                  params: { status: status },
-                  class: "opacity-80 hover:opacity-100"
-                }
-              )%>
-            <% end %>
+          <div class="cursor-pointer opacity-80 hover:opacity-100">
+            <%= project_status_tag(@project.status) %>
+          </div>
+          <div
+            data-project-status-target="selectStatus"
+            class="absolute bg-white text-right right-0 w-36 p-3 mt-2 rounded shadow hidden"
+          >
+            <div class="flex flex-col items-end gap-y-2">
+              <% Project.statuses.each_key do |status| %>
+                <%= button_to(
+                  project_status_tag(status),
+                  { action: :update },
+                  {
+                    method: :put,
+                    params: { status: status },
+                    class: "opacity-80 hover:opacity-100"
+                  }
+                )%>
+              <% end %>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <div class="border-b pb-5">
-      <p><%= @project.description %></p>
-    </div>
+      <div class="border-b pb-5">
+        <p><%= @project.description %></p>
+      </div>
 
-    <div class="flex flex-col gap-y-3">
-      <h2 class="font-semibold">Project History</h2>
-      <% @comments.each do |comment| %>
-        <div class="bg-gray-50 p-3">
-          <div class="flex justify-between">
-            <span class="font-medium"><%= comment.user.username %></span>
-            <span class="text-sm text-slate-500	"><%= comment.created_at.strftime("%B %y - %I:%M%P") %></span>
-          </div>
-          <p><%= comment.body %></p>
-        </div>
-      <% end %>
-    </div>
+      <div class="flex flex-col gap-y-3">
+        <h2 class="font-semibold">Project History</h2>
+        <% @project_changes.each do |change| %>
+          <% if change.is_a?(Comment) %>
+            <div class="bg-gray-50 p-3">
+              <div class="flex justify-between">
+                <span class="font-medium"><%= change.user.username %></span>
+                <span class="text-sm text-slate-500	"><%= change.created_at.strftime("%B %y - %I:%M%P") %></span>
+              </div>
+              <p><%= change.body %></p>
+            </div>
+          <% elsif change.is_a?(ProjectStatusChange) %>
+            <div class="p-3">
+              <div class="flex justify-between">
+                <span class="font-medium"><%= change.user.username %></span>
+                <span class="text-sm text-slate-500	"><%= change.created_at.strftime("%B %y - %I:%M%P") %></span>
+              </div>
+              <span>Changed project status from <%= project_status_tag(change.from) %> to <%= project_status_tag(change.to) %></span>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
 
-    <div>
-      <%= simple_form_for [@project, @comment] do |f| %>
-        <%= f.input :body, label: false, placeholder: "Add a comment...", input_html: { class: "w-full" } %>
-        <%= f.button :submit, "Save", class: "px-5 py-2 bg-slate-600 text-white rounded cursor-pointer opacity-80 hover:opacity-100" %>
-      <% end %>
+      <div>
+        <%= simple_form_for [@project, @comment] do |f| %>
+          <%= f.input :body, label: false, placeholder: "Add a comment...", input_html: { class: "w-full" } %>
+          <%= f.button :submit, "Save", class: "px-5 py-2 bg-slate-600 text-white rounded cursor-pointer opacity-80 hover:opacity-100" %>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

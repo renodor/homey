@@ -1,6 +1,6 @@
-class CreateProjectStatusHistories < ActiveRecord::Migration[7.0]
+class CreateProjectStatusChanges < ActiveRecord::Migration[7.0]
   def change
-    create_table :project_status_histories do |t|
+    create_table :project_status_changes do |t|
       t.string :from, null: false
       t.string :to, null: false
       t.references :project, null: false, foreign_key: true

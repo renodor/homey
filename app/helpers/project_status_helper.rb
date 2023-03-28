@@ -5,7 +5,7 @@ module ProjectStatusHelper
     content_tag(
       :span,
       status.tr('_', ' ').capitalize,
-      class: ['flex', 'items-center', 'text-xs', 'px-3', 'py-1', 'rounded-full', project_status_color(status)]
+      class: ['text-xs', 'px-3', 'py-1', 'rounded-full', project_status_color(status)]
     )
   end
 

@@ -24,15 +24,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_28_100859) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
-  create_table "project_status_histories", force: :cascade do |t|
+  create_table "project_status_changes", force: :cascade do |t|
     t.string "from", null: false
     t.string "to", null: false
     t.bigint "project_id", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["project_id"], name: "index_project_status_histories_on_project_id"
-    t.index ["user_id"], name: "index_project_status_histories_on_user_id"
+    t.index ["project_id"], name: "index_project_status_changes_on_project_id"
+    t.index ["user_id"], name: "index_project_status_changes_on_user_id"
   end
 
   create_table "projects", force: :cascade do |t|
@@ -58,6 +58,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_28_100859) do
 
   add_foreign_key "comments", "projects"
   add_foreign_key "comments", "users"
-  add_foreign_key "project_status_histories", "projects"
-  add_foreign_key "project_status_histories", "users"
+  add_foreign_key "project_status_changes", "projects"
+  add_foreign_key "project_status_changes", "users"
 end
