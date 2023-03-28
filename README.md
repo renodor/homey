@@ -1,7 +1,4 @@
-# README
-
-Homey Technical Test
-
+# Homey Technical Test
 ## Built with:
 * Ruby 3.0.0
 * Rails 7
@@ -23,6 +20,6 @@ A demo user with the following credentials is created when running the seeds and
 * password: `password`
 
 ## App usage
-Once authenticated you should see a list of project. You can access a project by clicking on it.
+Once authenticated you should see a list of projects. You can access a project by clicking on it.
 First and second projects should have comments and status changes.
 You can then add comments and change status of any project.
