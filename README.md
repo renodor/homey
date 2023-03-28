@@ -1,24 +1,28 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Homey Technical Test
 
-Things you may want to cover:
+## Built with:
+* Ruby 3.0.0
+* Rails 7
+* PostgreSQL
+* Devise for authentication
+* Tailwind css
 
-* Ruby version
+## Setup
+* `rails db:create` to create the Databse
+* `rails db:migrate` to run migrations
+* `rails db:seed` to run seeds
+* `bundle install` to install dependencies
+* `bin/dev` to launch dev server on `localhost:3000`
 
-* System dependencies
+## Authentication
+You need to login in order to access the app.
+A demo user with the following credentials is created when running the seeds and can be used to login:
+* email: `user_1@gmail.com`
+* password: `password`
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## App usage
+Once authenticated you should see a list of project. You can access a project by clicking on it.
+First and second projects should have comments and status changes.
+You can then add comments and change status of any project.
