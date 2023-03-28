@@ -1,6 +1,14 @@
 # frozen_string_literal:true
 
 module ProjectStatusHelper
+  def project_status_tag(status)
+    content_tag(
+      :span,
+      status.tr('_', ' ').capitalize,
+      class: ['flex', 'items-center', 'text-xs', 'px-3', 'py-1', 'rounded-full', project_status_color(status)]
+    )
+  end
+
   def project_status_color(status)
     case status
     when 'to_do'

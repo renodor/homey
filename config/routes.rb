@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   root 'projects#index'
 
-  resources :projects, only: %i[index show] do
+  resources :projects, only: %i[index show update] do
     resources :comments, only: :create
   end
 end

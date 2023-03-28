@@ -10,4 +10,10 @@ class ProjectsController < ApplicationController
     @comments = @project.comments
     @comment = Comment.new
   end
+
+  def update
+    @project = Project.find(params[:id])
+    @project.update!(status: params[:status])
+    redirect_to project_path(@project)
+  end
 end

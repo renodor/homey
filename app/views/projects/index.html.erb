@@ -2,9 +2,7 @@
   <% @projects.each do |project| %>
     <div class="relative w-full max-w-2xl p-4 bg-white rounded shadow border border-transparent flex justify-between hover:border-slate-300">
       <span><%= project.name %></span>
-      <span class="flex items-center text-xs px-3 rounded-full <%= project_status_color(project.status) %>">
-        <%= project.status.tr('_', ' ').capitalize %>
-      </span>
+      <%= project_status_tag(project.status) %>
       <%= link_to '', project_path(project), class: "absolute inset-0" %>
     </div>
   <% end %>
