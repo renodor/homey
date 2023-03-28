@@ -8,7 +8,11 @@ User.destroy_all
 
 p 'Create Projects'
 3.times do |n|
-  Project.create!(name: "Cool Project #{n + 1}")
+  Project.create!(
+    name: "Cool Project #{n + 1}",
+    status: rand(4),
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam egestas dictum interdum. Vivamus feugiat mattis orci, id lobortis ipsum. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.'
+  )
 end
 
 p 'Create Users'

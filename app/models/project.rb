@@ -4,7 +4,7 @@ class Project < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :project_status_histories, dependent: :destroy
 
-  validates :name, :status, presence: true
+  validates :name, :status, :description, presence: true
 
   enum status: {
     to_do: 0,

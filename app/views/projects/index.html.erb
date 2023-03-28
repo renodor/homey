@@ -1,9 +1,11 @@
-<div>
+<div class="m-10 flex flex-col gap-y-3">
   <% @projects.each do |project| %>
-    <div>
-      <%= link_to project_path(project) do %>
-        <%= project.name %>
-      <% end %>
+    <div class="relative p-4 bg-white rounded shadow border border-transparent flex justify-between hover:border-slate-300">
+      <span><%= project.name %></span>
+      <span class="flex items-center text-xs px-3 rounded-full <%= project_status_color(project.status) %>">
+        <%= project.status.tr('_', ' ').capitalize %>
+      </span>
+      <%= link_to '', project_path(project), class: "absolute inset-0" %>
     </div>
   <% end %>
 </div>
