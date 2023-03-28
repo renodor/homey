@@ -18,7 +18,7 @@ end
 p 'Create Users'
 2.times do |n|
   User.create(
-    username: "cool_user_#{n + 1}",
+    username: "cool user #{n + 1}",
     email: "user_#{n + 1}@gmail.com",
     password: 'password'
   )
