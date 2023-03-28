@@ -1,0 +1,24 @@
+<div class="flex justify-center">
+  <div class="bg-white rounded m-10 p-5">
+    <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+      <div class="form-inputs flex flex-col gap-y-3">
+        <%= f.input :email,
+                    required: false,
+                    autofocus: true,
+                    label: false,
+                    placeholder: 'Email',
+                    input_html: { autocomplete: "email" } %>
+        <%= f.input :password,
+                    required: false,
+                    label: false,
+                    placeholder: 'Password',
+                    input_html: { autocomplete: "current-password" } %>
+        <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+      </div>
+
+      <div class="form-actions">
+        <%= f.button :submit, "Log in", class: "mt-3 px-5 py-2 bg-slate-600 text-white rounded cursor-pointer w-full opacity-80 hover:opacity-100" %>
+      </div>
+    <% end %>
+  </div>
+</div>
