@@ -9,7 +9,7 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     @comment = Comment.new
 
-    @project_changes = @project.comments + @project.project_status_changes
+    @project_changes = @project.comments.includes(:user) + @project.project_status_changes.includes(:user)
     @project_changes.sort_by!(&:created_at) # TODO: Maybe we can directly return merged associations and leverage ActiveRecord #order
   end
 
